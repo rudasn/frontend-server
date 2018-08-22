@@ -12,4 +12,4 @@
 
 ## Usage
 
-Run `yarn start` to start the server.
+Run `yarn start` to start the server and follow the instrutions on the terminal.

@@ -50,7 +50,8 @@ module.exports = ({ PKG, PORT, BUILD_PATH }) => {
 
   app.listen(PORT)
 
-  console.log(`[${ PKG.name }] Listening on port ${ PORT }`)
+  console.log(`[${ PKG.name }] Listening on port ${ PORT }...`)
+  console.log(`\n\n[${ PKG.name }] Point your browser to http://localhost:${ PORT }/ to see the application.`)
 
   return app
 }
