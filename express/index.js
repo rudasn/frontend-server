@@ -2,6 +2,7 @@ const compression = require('compression')
 const cors = require('cors')
 const express = require('express')
 const path = require('path')
+const opn = require('opn')
 const request = require('request')
 
 module.exports = ({ PKG, PORT, BUILD_PATH }) => {
@@ -32,8 +33,8 @@ module.exports = ({ PKG, PORT, BUILD_PATH }) => {
   )
 
   // Proxy requests
-  app.get('/proxy', function(req, res) {
-    const url = req.query.url
+  app.get('/proxy/**', function(req, res) {
+    const url = req.params[0]
     req.pipe(request(url)).pipe(res)
   })
 
@@ -51,7 +52,8 @@ module.exports = ({ PKG, PORT, BUILD_PATH }) => {
   app.listen(PORT)
 
   console.log(`[${ PKG.name }] Listening on port ${ PORT }...`)
-  console.log(`\n\n[${ PKG.name }] Point your browser to http://localhost:${ PORT }/ to see the application.`)
+
+  opn(`http://localhost:${ PORT }/`)
 
   return app
 }
